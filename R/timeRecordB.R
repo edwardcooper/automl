@@ -7,11 +7,11 @@
 #'if this variable does not exist in the current R session. Then the output_message and the current time is written to a
 #'file with the name that contains the current time. This function does not allow to to specify
 #'the current time on purpose, but if you want to continue to append to one log file, you could assign the variable
-#'with the file name in the golbal environment.
+#'with the file name in the global environment.
 #'
 #'@param  output_message A string that contains the message you want to saved.
 #'
-#'@return NULL Nothing will return
+#'@return NULL
 #'
 #'@examples
 #'timeRecordB()
