@@ -1,0 +1,11 @@
+Package: automl
+Type: Package
+Title: Make machine learning model training with less code. 
+Version: 0.0.9000
+Author: Zijun Lu
+Maintainer: Zijun Lu <maxminicherrycc@gmail.com>
+Description: The goal is to make training more models with less code. 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
