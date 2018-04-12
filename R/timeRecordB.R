@@ -37,7 +37,11 @@ timeRecordB=function(output_message="None"){
 
     write(c(output_message,proc.time()),ncolumns = 6 ,file=file_name,append=TRUE,sep=",")
   }else{
+    # change file name into a legit file name on both windows 10 and ubuntu 16.04
     file_name=paste(format(Sys.time(), "%F_%T"),".log",sep="")
+    file_name=gsub(":","_",x=file_name)
+    file_name=gsub("-","_",x=file_name)
+
 
     file.create(file_name)
     # make the insanely long name a global variable
