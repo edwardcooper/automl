@@ -19,5 +19,6 @@ Imports: dplyr,
     doParallel,
     magrittr,
     caret,
-    glue
+    glue,
+    h2o
 Suggests: h2o
