@@ -50,11 +50,11 @@
 #'
 #' @param summaryFunction A function name. The only fully tested is twoClassSummary for binary-classification problems.
 #'
-#' @return list, a list contains the model informaiton. The same structure as train in caret package would return.
+#' @return a list contains the model informaiton. The same structure as train function in caret package would return.
 #'
 #'
 #' @examples
-#' \donotrun{
+#' \dontrun{
 #'
 #'  ml_tune(data=training,target="target",sampling="down",metric="Accuracy",search = "random",k=10,tuneLength=2,repeats=1,method="xgbLinear",preProcess=NULL,summaryFunction=twoClassSummary,nthread=4)
 #' }
