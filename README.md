@@ -18,7 +18,7 @@ devtools::install_github("edwardcooper/automl")
 
 This pacakge is still in the early stage of developement and currently only support classification problems.
 
-## The main function for model training.  
+## Tutorial
 The main function is ml_list. Below is an example of how to use it. 
 
 

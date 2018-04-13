@@ -20,6 +20,5 @@ Imports: dplyr,
     magrittr,
     caret,
     glue,
-    h2o
-
-
+    h2o,
+    MLmetrics
