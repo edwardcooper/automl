@@ -50,7 +50,7 @@
 #'
 #' @param nthread A numeric, the number of cores to use in model training. It is best to set it to the number of physical cores you have minus 1.
 #'
-#' @param summaryFunction A function name. The only fully tested is twoClassSummary for binary-classification problems.
+#' @param summaryFunction A function name. Use twoClassSummary for binary classification and multiClassSummary for multi-class classification.
 #'
 #' @return a list contains the model informaiton. The same structure as train function in caret package would return.
 #'
@@ -58,7 +58,8 @@
 #' @examples
 #' \dontrun{
 #'
-#'  ml_tune(data=training,target="target",sampling="down",metric="Accuracy",search = "random",k=10,tuneLength=2,repeats=1,method="xgbLinear",preProcess=NULL,summaryFunction=twoClassSummary,nthread=4)
+#'  ml_tune(data=training,target="target",sampling="down",metric="Accuracy",search = "random"
+#'  ,k=10,tuneLength=2,repeats=1,method="xgbLinear",preProcess=NULL,summaryFunction=twoClassSummary,nthread=4)
 #' }
 #'
 #'
