@@ -69,9 +69,9 @@
 
 ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k=10,tuneLength=2,repeats=1,method="xgbLinear",preProcess=NULL,summaryFunction=twoClassSummary,nthread=3){
   # load the machine learning library.
-  #library(caret)
+  library(caret)
   # register parallel backend package
-  #library(doParallel)
+  library(doParallel)
 
 
   # if the method name contains h2o then it is essential to initialize the h2o
