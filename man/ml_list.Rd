@@ -36,5 +36,5 @@ params_grid=expand.grid(sampling=c("up","down","rose","smote","ADAS")
 
 }
 \seealso{
-To test why one algorithm does not work or to fine-tune a specific model, try function \code{\link{ml_tune}} or use caret's train function \code{\link[caret]{train}}
+To test why one algorithm does not work or to fine-tune a specific model, try function \code{\link{ml_tune}} or use caret's train function \code{\link[caret]{train}}.
 }
