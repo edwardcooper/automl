@@ -47,6 +47,12 @@ When using random grid search, there will be tuneLength of models being trained,
 Use Random whenever possible unless you what to fine-tune one machine learning algorithm.
 }
 \examples{
+
+iris_classification=ml_tune(data=iris,target = "Species",metric = "Kappa",search = "random",k=5,tuneLength = 2,repeats = 1,
+method = "rf",preProcess = c("center","scale"),summaryFunction = multiClassSummary)
+
+predict(iris_classification,iris)
+
 \dontrun{
 
  ml_tune(data=training,target="target",sampling="down",metric="Accuracy",search = "random"
