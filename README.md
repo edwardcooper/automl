@@ -1,4 +1,8 @@
 # automl
+
+
+## installation 
+
 A R package to make training hundreds of machine learning models in a few lines. 
 
 It is basically a wrapper on top of the caret package.
@@ -13,3 +17,24 @@ devtools::install_github("edwardcooper/automl")
 ```
 
 This pacakge is still in the early stage of developement and currently only support classification problems.
+
+## The main function for model training.  
+The main function is ml_list. Below is an example of how to use it. 
+
+
+
+```r
+params_grid=expand.grid(sampling=c("up","down","rose","smote","ADAS")
+                        ,metric=c("ROC","Accuracy","Kappa","Sens","Spec")
+                        ,preProcess=list(c("zv","nzv","center","scale"),c("center","scale"))
+                        ,method=c("glmnet","glm","bayesglm")
+                        ,search="random"
+                        ,tuneLength=10
+                        ,k=10,nthread=3)
+
+iris_list= ml_list(data=iris,target = "Species"
+                   ,params = params_grid,summaryFunction=multiClassSummary
+                   ,save_model="iris_models")
+```
+
+By assigning save_model option a character value "iris_model", each model is saved to a folder called iris_model. 

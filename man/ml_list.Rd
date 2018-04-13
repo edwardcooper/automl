@@ -41,7 +41,8 @@ params_grid=expand.grid(sampling=c("up","down","rose","smote","ADAS")
                         ,k=10,nthread=3)
 
 iris_list= ml_list(data=iris,target = "Species"
-                   ,params = params_grid,summaryFunction=multiClassSummary,save_model="iris_models")
+                   ,params = params_grid,summaryFunction=multiClassSummary
+                   ,save_model="iris_models")
 }
 \seealso{
 To test why one algorithm does not work or to fine-tune a specific model, try function \code{\link{ml_tune}} or use caret's train function \code{\link[caret]{train}}.
