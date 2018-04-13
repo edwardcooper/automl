@@ -22,6 +22,10 @@
 #'
 #' @import h2o
 #'
+#' @import MLmetrics
+#' @import e1071
+#'
+#'
 #' @param data the data to be trained in dataframe format.
 #'
 #' @param target A character, column name of the target variable.
