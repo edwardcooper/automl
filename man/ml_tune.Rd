@@ -36,10 +36,10 @@ For details on these sampling methods, please see the \href{smotefamily package}
 \item{nthread}{A numeric, the number of cores to use in model training. It is best to set it to the number of physical cores you have minus 1.}
 }
 \value{
-list, a list contains the model informaiton. The same structure as train in caret package would return.
+a list contains the model informaiton. The same structure as train function in caret package would return.
 }
 \description{
-Auto-tune ml model with different sampling methods, different metrics, preprocessing method, number of cores and etc.
+Auto-tune ml model with different sampling methods, different metrics, preprocessing method, number of cores and etc, and return one model.
 }
 \details{
 When using grid search, there will be N_hyper_params^tuneLength of the models being trained.
@@ -47,7 +47,7 @@ When using random grid search, there will be tuneLength of models being trained,
 Use Random whenever possible unless you what to fine-tune one machine learning algorithm.
 }
 \examples{
-\\donotrun{
+\dontrun{
 
  ml_tune(data=training,target="target",sampling="down",metric="Accuracy",search = "random",k=10,tuneLength=2,repeats=1,method="xgbLinear",preProcess=NULL,summaryFunction=twoClassSummary,nthread=4)
 }
