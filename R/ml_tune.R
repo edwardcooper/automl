@@ -1,6 +1,6 @@
 #' Wrapper for auto-tune many ML algorithms supported by caret.
 #'
-#' Auto-tune ml model with different sampling methods, different metrics, preprocessing method, number of cores and etc.
+#' Auto-tune ml model with different sampling methods, different metrics, preprocessing method, number of cores and etc, and return one model.
 #'
 #' When using grid search, there will be N_hyper_params^tuneLength of the models being trained.
 #' When using random grid search, there will be tuneLength of models being trained, plus the eta is not set.
@@ -69,9 +69,9 @@
 
 ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k=10,tuneLength=2,repeats=1,method="xgbLinear",preProcess=NULL,summaryFunction=twoClassSummary,nthread=3){
   # load the machine learning library.
-  library(caret)
+  #library(caret)
   # register parallel backend package
-  library(doParallel)
+  #library(doParallel)
 
 
   # if the method name contains h2o then it is essential to initialize the h2o
