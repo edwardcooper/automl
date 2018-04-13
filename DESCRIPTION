@@ -20,7 +20,6 @@ Imports: dplyr,
     magrittr,
     caret,
     glue,
-    h2o,
-    e1071,
-    MLmetrics
-Suggests: h2o
+    h2o
+
+
