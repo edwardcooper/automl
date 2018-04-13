@@ -24,6 +24,7 @@ The main function is ml_list. Below is an example of how to use it.
 
 
 ```r
+# construct the parameter space
 params_grid=expand.grid(sampling=c("up","down","rose","smote","ADAS")
                         ,metric=c("ROC","Accuracy","Kappa","Sens","Spec")
                         ,preProcess=list(c("zv","nzv","center","scale"),c("center","scale"))
@@ -31,7 +32,9 @@ params_grid=expand.grid(sampling=c("up","down","rose","smote","ADAS")
                         ,search="random"
                         ,tuneLength=10
                         ,k=10,nthread=3)
-
+# install missing package dependencies.
+install_pkg_model_names(params_grid$method)
+ 
 iris_list= ml_list(data=iris,target = "Species"
                    ,params = params_grid,summaryFunction=multiClassSummary
                    ,save_model="iris_models")

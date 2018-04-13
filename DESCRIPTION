@@ -1,10 +1,10 @@
 Package: automl
 Type: Package
-Title: Make machine learning model training with less code. 
+Title: Train hundreds of machine learning models with a few lines of code. 
 Version: 0.0.9000
 Author: Zijun Lu
 Maintainer: Zijun Lu <maxminicherrycc@gmail.com>
-Description: The goal is to make training more models with less code. 
+Description: The goal is to make training more models with less code by writing a wrapper on top of the caret package. 
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
