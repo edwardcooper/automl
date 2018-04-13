@@ -33,7 +33,15 @@ The goal of save_model option is to save the models to disk in case anything une
 \examples{
 
 params_grid=expand.grid(sampling=c("up","down","rose","smote","ADAS")
+                        ,metric=c("ROC","Accuracy","Kappa","Sens","Spec")
+                        ,preProcess=list(c("zv","nzv","center","scale"),c("center","scale"))
+                        ,method=c("glmnet","glm","bayesglm")
+                        ,search="random"
+                        ,tuneLength=10
+                        ,k=10,nthread=3)
 
+iris_list= ml_list(data=train_data,target = "is_open"
+                   ,params = params_grid,summaryFunction=twoClassSummary,save_model="iris_models")
 }
 \seealso{
 To test why one algorithm does not work or to fine-tune a specific model, try function \code{\link{ml_tune}} or use caret's train function \code{\link[caret]{train}}.
