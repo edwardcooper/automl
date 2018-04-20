@@ -15,8 +15,10 @@ Then, install the latest version of the automl packages in github:
 ```r
 devtools::install_github("edwardcooper/automl")
 ```
+It takes a while to install all the necessary packages, so go grab a cup of tea or coffeee. 
 
-This pacakge is still in the early stage of developement and currently only support classification problems.
+
+This pacakge is still in the early stage of developement and currently only support classification problems. But I will add support for regression soon. 
 
 ## Tutorial
 The main function is ml_list. Below is an example of how to use it. 
