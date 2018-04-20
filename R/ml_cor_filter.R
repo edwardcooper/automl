@@ -1,7 +1,8 @@
-#' A function to filter models based on inter-model correlation. Mainly based on modelCor function in caret.
+#' A function to filter models based on inter-model correlation.
 #'
 #'
 #' This function will also remove models that have NA value in resampled performance. a.k.a NA value in modelCor function output.
+#' Mainly based on modelCor function in caret.
 #'
 #' What the function does is to first get rid of model performance with missing values. Second, filter models based on cor_level,
 #' which is to get rid of the models with high correlation.
@@ -24,9 +25,9 @@
 #'
 #' }
 #'
-#'  @export
 #'
 #'
+#'@export
 
 ml_cor_filter=function(models,cor_level=0.9){
   # a function to remove models that have NA performance value after resample. a.k.a. modelCor function produces NA values.

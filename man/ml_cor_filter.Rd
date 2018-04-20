@@ -2,7 +2,7 @@
 % Please edit documentation in R/ml_cor_filter.R
 \name{ml_cor_filter}
 \alias{ml_cor_filter}
-\title{A function to filter models based on inter-model correlation. Mainly based on modelCor function in caret.}
+\title{A function to filter models based on inter-model correlation.}
 \usage{
 ml_cor_filter(models, cor_level = 0.9)
 }
@@ -16,6 +16,7 @@ A list of caret models that its performance metrics from cross-validation satisf
 }
 \description{
 This function will also remove models that have NA value in resampled performance. a.k.a NA value in modelCor function output.
+Mainly based on modelCor function in caret.
 }
 \details{
 What the function does is to first get rid of model performance with missing values. Second, filter models based on cor_level,
@@ -30,7 +31,6 @@ which is to get rid of the models with high correlation.
 
 }
 
- @export
 
 
 }

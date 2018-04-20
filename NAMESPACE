@@ -2,8 +2,11 @@
 
 export(install_pkg_model_names)
 export(ml_bwplot)
+export(ml_cor_filter)
+export(ml_cv_filter)
 export(ml_list)
 export(ml_tune)
+export(model_list_load)
 export(timeRecordB)
 export(timeRecordR)
 import(FNN)
