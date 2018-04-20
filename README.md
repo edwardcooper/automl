@@ -1,11 +1,11 @@
 # automl
-
-
-## installation 
-
-A R package to make training hundreds of machine learning models in a few lines. 
+A R package to make training hundreds of machine learning models with a few lines of code. 
 
 It is basically a wrapper on top of the caret package.
+
+## Installation 
+
+
 
 To use it, please manually install e1071 pacakge first,
 ```r

@@ -19,7 +19,7 @@
 #'   install_pkg_model_names(params_grid$method)
 #' }
 #'
-#' @seealso To see how the param_grid should be constructed \code{\link{ml_list}}
+#' @seealso To see how the param_grid should be constructed \code{\link{ml_list}}.
 #'
 #'
 

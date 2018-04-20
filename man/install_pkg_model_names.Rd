@@ -26,5 +26,5 @@ This function checks and installs package dependencies when you supply it with a
 
 }
 \seealso{
-To see how the param_grid should be constructed \code{\link{ml_list}}
+To see how the param_grid should be constructed \code{\link{ml_list}}.
 }
