@@ -21,6 +21,9 @@ It takes a while to install all the necessary packages, so go grab a cup of tea 
 This pacakge is still in the early stage of developement and currently only support classification problems. But I will add support for regression soon. 
 
 ## Tutorial
+
+
+### Model training
 The main function is ml_list. Below is an example of how to use it. 
 
 
@@ -43,3 +46,13 @@ iris_list= ml_list(data=iris,target = "Species"
 ```
 
 By assigning save_model option a character value "iris_model", each model is saved to a folder called iris_model. 
+
+After training the models for a long time, we will need to load all models into the R console. 
+
+```r
+iris_list=model_list_load(path="./iris_models")
+
+```
+
+
+### Model Selection
