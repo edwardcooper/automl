@@ -59,4 +59,4 @@ iris_list=model_list_load(path="./iris_models")
 
 This package also have some tools to help with model selection. We separate the model selection functions into two parts. The first part is to select models based on cross-validation results. The second part is to select models based on development set.
 
-
+Before we proceed to select the models, we should first visualize the model performance. 
