@@ -35,7 +35,7 @@
 
 ## plot the model performance for models with different metrics.
 ml_bwplot=function(models,metric=NULL){
-  requireNamespace("caret")
+  library(caret)
   # get the metrics from the caret model list.
   model_metrics=models%>%lapply( function(model_list){model_list$metric})%>%unlist
   # plot the model performance for metric-group ROC,Sens,Spec and/or Accuracy, Kappa.
