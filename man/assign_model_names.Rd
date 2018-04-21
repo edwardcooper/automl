@@ -13,7 +13,7 @@ assign_model_names(models)
 a list contains the all the models with names.
 }
 \description{
-Assign models with names based on method,metric,preProcess and sampling from the parameter of params dataframe in ml_lis funtion.
+Assign models with names based on method, metric, preProcess and sampling from the parameter of params dataframe in ml_lis funtion.
 }
 \details{
 The function uses foreach function to get the method, metric,preProcess and sampling for each model from a list of models.

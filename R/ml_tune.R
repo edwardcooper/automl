@@ -12,6 +12,7 @@
 #' @import smotefamily
 #' @import FNN
 #' @import dbscan
+#' @import MLmetrics
 #'
 #'
 #' @import foreach
