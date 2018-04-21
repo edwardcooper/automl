@@ -8,13 +8,13 @@
 #'
 #'
 #'
-#' @param models
+#'@param models
 #'
 #'
-#' @return a list contains the all the models with names.
+#'@return a list contains the all the models with names.
 #'
 #'
-#' @examples
+#'@examples
 #'down_sampling_models= assign_model_names(down_sampling_models)
 #'
 #'

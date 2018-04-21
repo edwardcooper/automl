@@ -28,8 +28,7 @@
 model_list_load=function(path){
   current_path=getwd()
   setwd(path)
-  path_command=paste("cd ",path,";ls")
-  file_names=system(path_command,intern = TRUE)
+  file_names=list.files(path=".")
   message(paste("Loading "),length(file_names)," models.")
   library(foreach)
   model_list=foreach(i=seq_along(file_names))%do%{
