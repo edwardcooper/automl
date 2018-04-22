@@ -117,6 +117,7 @@ iris_list = iris_list %>% ml_cor_filter(cor_level=0.75)
 To summarize all the operations above into a line. Always assign model names after load the models into R console.
 
 ```r
-iris_list = model_list_load(path="./iris_models") %>% assign_model_names %>% ml_bwplot %>% ml_cv_filter(metric = "Kappa",min=0.85,FUN=median) %>% ml_bwplot %>%
+iris_list = model_list_load(path="./iris_models") %>% assign_model_names %>% ml_bwplot %>%
+  ml_cv_filter(metric = "Kappa",min=0.85,FUN=median) %>% ml_bwplot %>%
   ml_cv_filter(metric = "Accuracy",min=0.85,FUN=min)%>%ml_bwplot() %>% ml_cor_filter(cor_level = 0.75)
 ```
