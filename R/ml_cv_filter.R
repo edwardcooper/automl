@@ -85,7 +85,7 @@ ml_cv_filter=function(models,metric="ROC",mini=NULL,max=NULL,FUN=median){
                 filter_values=(model%>%resamples%>%.$values%>%select(contains(paste0("~",metric)))%>%apply(2,FUN)%>%unlist)<max
               }
       )
-      model%>%resamples%>%.$values%>%select(contains(paste0("~",metric)))%>%apply(2,FUN)%>%unlist%>%print
+      #model%>%resamples%>%.$values%>%select(contains(paste0("~",metric)))%>%apply(2,FUN)%>%unlist%>%print
       filter_values%>%print
       filtered_model_from_metric=model[filter_values]
     }else{
