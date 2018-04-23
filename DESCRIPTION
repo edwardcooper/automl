@@ -22,3 +22,4 @@ Imports: dplyr,
     glue,
     h2o,
     MLmetrics
+Suggests: testthat
