@@ -9,7 +9,12 @@
 #'
 #' @importFrom  DMwR SMOTE
 #' @importFrom ROSE ROSE
-#' @import smotefamily
+#' @importFrom smotefamily ADAS
+#' @importFrom smotefamily ANS
+#' @importFrom smotefamily BLSMOTE
+#' @importFrom smotefamily DBSMOTE
+#' @importFrom smotefamily RSLS
+#' @importFrom smotefamily SLS
 #' @import FNN
 #' @import dbscan
 #' @import MLmetrics
