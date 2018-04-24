@@ -30,9 +30,9 @@ model_list_load=function(path){
   setwd(path)
   file_names=list.files(path=".")
   message(paste("Loading "),length(file_names)," models.")
-  library(foreach)
-  model_list=foreach(i=seq_along(file_names))%do%{
-    model=readRDS(file=file_names[i])
+
+  model_list=foreach::foreach(i=seq_along(file_names))%do%{
+    model=base::readRDS(file=file_names[i])
     message(paste("Finished loading model:",file_names[i],"\n",i,"/",length(file_names)))
     return(model)
   }

@@ -25,6 +25,7 @@
 #' @import magrittr
 #' @import caret
 #' @import dplyr
+#' @importFrom parallel makeCluster
 #'
 #' @import h2o
 #'
@@ -85,24 +86,21 @@
 
 
 ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k=10,tuneLength=2,repeats=1,method="xgbLinear",preProcess=NULL,summaryFunction=twoClassSummary,nthread=3){
-  # load the machine learning library.
-  library(caret)
-  # register parallel backend package
-  library(doParallel)
+
 
 
   # if the method name contains h2o then it is essential to initialize the h2o
   if(grepl(pattern="h2o",method)){
-    library(h2o)
-    h2o.init(nthreads=nthread) }
+
+    h2o::h2o.init(nthreads=nthread) }
 
   # set the number of cores to 1 for some algorithms.
   if(method %in% c("OneR","LMT","mlpKerasDecay","mlpKerasDecayCost","mlpKerasDropout") ){
     nthread=1
   }
   # register the backend
-  cl=makeCluster(nthread)
-  registerDoParallel(cl)
+  cl=parallel::makeCluster(nthread)
+  doParallel::registerDoParallel(cl)
 
 
   # implement different sampling methods. Only invoke the switch below if the sampling method is in the vector  c("ADAS","ANS","BLSMOTE","DBSMOTE","RSLS","SLS")
@@ -112,8 +110,8 @@ ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k
              ADAS={sampling <- list(name = "ADAS",
                                     func = function (x, y) {
 
-                                      library(smotefamily)
-                                      library(FNN)
+                                      require(smotefamily)
+                                      require(FNN)
                                       dat <- if (is.data.frame(x)) x else as.data.frame(x)
 
                                       dat$.y <- y
@@ -131,8 +129,8 @@ ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k
                sampling <- list(name = "ANS",
                                 func = function (x, y) {
 
-                                  library(smotefamily)
-                                  library(FNN)
+                                  require(smotefamily)
+                                  require(FNN)
                                   dat <- if (is.data.frame(x)) x else as.data.frame(x)
 
                                   dat$.y <- y
@@ -149,8 +147,8 @@ ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k
                sampling<-list(name = "BLSMOTE",
                               func = function (x, y) {
 
-                                library(smotefamily)
-                                library(FNN)
+                                require(smotefamily)
+                                require(FNN)
                                 dat <- if (is.data.frame(x)) x else as.data.frame(x)
 
                                 dat$.y <- y
@@ -167,8 +165,8 @@ ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k
                sampling<-list(name = "DBSMOTE",
                               func = function (x, y) {
 
-                                library(smotefamily)
-                                library(dbscan)
+                                require(smotefamily)
+                                require(dbscan)
                                 dat <- if (is.data.frame(x)) x else as.data.frame(x)
 
                                 dat$.y <- y
@@ -185,8 +183,8 @@ ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k
                sampling<-list(name = "RSLS",
                               func = function (x, y) {
 
-                                library(smotefamily)
-                                library(dbscan)
+                                require(smotefamily)
+                                require(dbscan)
                                 dat <- if (is.data.frame(x)) x else as.data.frame(x)
 
                                 dat$.y <- y
@@ -203,8 +201,8 @@ ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k
                sampling<-list(name = "SLS",
                               func = function (x, y) {
 
-                                library(smotefamily)
-                                library(dbscan)
+                                require(smotefamily)
+                                require(dbscan)
                                 dat <- if (is.data.frame(x)) x else as.data.frame(x)
 
                                 dat$.y <- y
@@ -226,26 +224,26 @@ ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k
   # end of the if for changing sampling method.
 
   # record the time
-  timeRecordB()
+  automl::timeRecordB()
   # change the trainControl for different metric.
   switch(metric,
          Accuracy={
-           ctrl_with_sampling<- trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search)
+           ctrl_with_sampling<-caret:: trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search)
          },Kappa={
-           ctrl_with_sampling<- trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search)
+           ctrl_with_sampling<-caret:: trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search)
          },ROC={
-           ctrl_with_sampling<- trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search,classProbs = TRUE,summaryFunction = summaryFunction)
+           ctrl_with_sampling<-caret:: trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search,classProbs = TRUE,summaryFunction = summaryFunction)
          },Sens={
-           ctrl_with_sampling<- trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search,classProbs = TRUE,summaryFunction = summaryFunction)
+           ctrl_with_sampling<-caret:: trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search,classProbs = TRUE,summaryFunction = summaryFunction)
          },Spec={
-           ctrl_with_sampling<- trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search,classProbs = TRUE,summaryFunction = summaryFunction)
+           ctrl_with_sampling<-caret:: trainControl(method = "repeatedcv",number = k, repeats = repeats,sampling = sampling,search=search,classProbs = TRUE,summaryFunction = summaryFunction)
          }
   )
 
 
   # train the function
   # consider change the input into x and y in the future.
-  ml_with_sampling_preprocess=train(  x=data[,colnames(data)!=target]
+  ml_with_sampling_preprocess=caret::train(  x=data[,colnames(data)!=target]
                                       , y=data[,colnames(data)==target]
                                       , method=method
                                       , metric=metric
@@ -263,9 +261,9 @@ ml_tune=function(data,target,sampling=NULL,metric="Accuracy",search = "random",k
 
   # wrap up the parallel connections.
   if(grepl(pattern="h2o",method)){
-    h2o.shutdown(prompt = FALSE) }
-  stopCluster(cl)
-  stopImplicitCluster()
+    h2o::h2o.shutdown(prompt = FALSE) }
+  parallel::stopCluster(cl)
+  doParallel::stopImplicitCluster()
   gc()
   return(ml_with_sampling_preprocess)
 }

@@ -23,19 +23,21 @@
 #'@import magrittr
 #'@importFrom dplyr filter
 #'
+#'
+#'
 #'@export
 
 timeRecordR=function(unit="s",ignore=1){
 
   # If the file needed to read is there. Then, we could began to read it into R.
-  if(file.exists(extremely_long_name_i_do_not_think_anyone_would_be_sanely_to_use)){
+  if(base::file.exists(extremely_long_name_i_do_not_think_anyone_would_be_sanely_to_use)){
 
-    time_dataframe=read.table(extremely_long_name_i_do_not_think_anyone_would_be_sanely_to_use,sep=",")
+    time_dataframe=utils::read.table(extremely_long_name_i_do_not_think_anyone_would_be_sanely_to_use,sep=",")
 
-    colnames(time_dataframe)=c("output_message",names(proc.time()) )
+    base::colnames(time_dataframe)=c("output_message",base::names(base::proc.time()) )
 
 
-    time_interval=c(0,diff(time_dataframe[,"elapsed"]))
+    time_interval=c(0,base::diff(time_dataframe[,"elapsed"]))
 
     # for different time unit, we will give values for differnt run_time.
     switch(unit,
@@ -43,7 +45,7 @@ timeRecordR=function(unit="s",ignore=1){
            ,min={time_dataframe=cbind(time_dataframe,run_time=time_interval/60)}
            ,hr={time_dataframe=cbind(time_dataframe,run_time=time_interval/3600)} )
 
-    time_dataframe=time_dataframe%>%filter(run_time>ignore)
+    time_dataframe=time_dataframe%>%dplyr::filter(run_time>ignore)
 
 
   }else{

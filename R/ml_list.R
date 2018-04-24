@@ -48,19 +48,21 @@
 #'@export
 
 ml_list=function(data,target,params,summaryFunction=twoClassSummary,save_model=NULL){
-  timeRecordB()
+  automl::timeRecordB()
+  # record the current packages loaded in R
+  before_func_packs=base::search()
+  require(magrittr)
   # print the total numbers of models to be trained.
   print(paste("Total training model(s):",sum(params[,"tuneLength"]),sep=" " ))
   params%>%print()
-  library(foreach)
-  library(magrittr)
+
 
 
   # just do not add the .combine=list sovles the strange list structure.
   # remove the output if there is an error in training the model. .errorhandling = "remove".
   # use pass instead of remove in errorhandling in foreach.
   # See https://cran.r-project.org/web/packages/foreach/foreach.pdf for details.
-  model_list=foreach(i=1:nrow(params),.packages = c("caret","magrittr"),.errorhandling = "pass")%do%{
+  model_list=foreach::foreach(i=1:nrow(params),.packages = c("caret","magrittr"),.errorhandling = "pass")%do%{
 
     ### If there is sampling information in the params then give sampling that value, if sampling has a NULL character value, give it a NULL.
     if("sampling" %in% colnames(params) ){
@@ -77,7 +79,7 @@ ml_list=function(data,target,params,summaryFunction=twoClassSummary,save_model=N
     if("nthread" %in% colnames(params)){
       nthread=params[i,"nthread"]%>%as.numeric()
     }else{
-      nthread=4
+      nthread=3
     }
     # give repeats a default number 1 if not specified.
     if("repeats" %in% colnames(params)){
@@ -95,7 +97,7 @@ ml_list=function(data,target,params,summaryFunction=twoClassSummary,save_model=N
     # model training part.
     # add tryCatch for error handling.
 
-    ml_model_train=ml_tune(data=data,target=target,sampling=sampling,preProcess=preProcess
+    ml_model_train=automl::ml_tune(data=data,target=target,sampling=sampling,preProcess=preProcess
                            ,metric=metric
                            ,tuneLength=tuneLength
                            ,search=search
@@ -112,7 +114,7 @@ ml_list=function(data,target,params,summaryFunction=twoClassSummary,save_model=N
 
 
     # save each model to disk.
-    # ======================================
+    # ================================================
     # change the preprocess vector into a single chr.
     preProcess_message=glue::collapse(preProcess,sep="_")
     file_name=paste(i,method,sampling,preProcess_message,metric,sep="_")
@@ -133,6 +135,9 @@ ml_list=function(data,target,params,summaryFunction=twoClassSummary,save_model=N
 
   # finally save the entire model list to disk.
   if(!is.null(save_model)){ saveRDS(model_list,file=paste(save_model,".rds",sep="") ) }
+
+  # remove all added packages.
+  automl::unload_additional_packs(before_func_packs=before_func_packs)
 
   return(model_list)
 }

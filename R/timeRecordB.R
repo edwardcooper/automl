@@ -11,6 +11,7 @@
 #'
 #'@param  output_message A string that contains the message you want to saved.
 #'
+#'
 #'@return NULL
 #'
 #'@examples
@@ -31,26 +32,26 @@ timeRecordB=function(output_message="None"){
 
 
   # append to file the current time if the file is already there.
-  if(exists("extremely_long_name_i_do_not_think_anyone_would_be_sanely_to_use")){
+  if(base::exists("extremely_long_name_i_do_not_think_anyone_would_be_sanely_to_use")){
 
     file_name=extremely_long_name_i_do_not_think_anyone_would_be_sanely_to_use
 
-    write(c(output_message,proc.time()),ncolumns = 6 ,file=file_name,append=TRUE,sep=",")
+    base::write(c(output_message,proc.time()),ncolumns = 6 ,file=file_name,append=TRUE,sep=",")
   }else{
     # change file name into a legit file name on both windows 10 and ubuntu 16.04
-    file_name=paste(format(Sys.time(), "%F_%T"),".log",sep="")
-    file_name=gsub(":","_",x=file_name)
-    file_name=gsub("-","_",x=file_name)
+    file_name=base::paste(format(Sys.time(), "%F_%T"),".log",sep="")
+    file_name=base::gsub(":","_",x=file_name)
+    file_name=base::gsub("-","_",x=file_name)
 
 
-    file.create(file_name)
+    base::file.create(file_name)
     # make the insanely long name a global variable
     extremely_long_name_i_do_not_think_anyone_would_be_sanely_to_use<<-file_name
 
-    time_variable=c(output_message,proc.time())
+    time_variable=c(output_message,base::proc.time())
 
-    write(time_variable,file=file_name,ncolumns = 6 ,append=TRUE,sep=",")
-    if(file.exists(file_name)){
+    base::write(time_variable,file=file_name,ncolumns = 6 ,append=TRUE,sep=",")
+    if(base::file.exists(file_name)){
 
       print("Fun time log has been created")
 
