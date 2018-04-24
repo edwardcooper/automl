@@ -31,12 +31,12 @@
 #'   return(1)
 #' }
 #' testing_packs(data=iris)
-#' unload_additional_packs(init_state=init_state)
+#' unload_extra_library(init_state=init_state)
 #' @export
 
 
 
-unload_additional_packs=function(init_state=init_state){
+unload_extra_library=function(init_state=init_state){
 
   # record the current search path.
   after_func_packs=search()
