@@ -1,5 +1,5 @@
 
-# tests for two timeRecord functions. 
+# tests for two timeRecord functions.
 devtools::install_github("edwardcooper/automl")
 library(automl)
 timeRecordB()
@@ -10,7 +10,7 @@ timeRecordB(output_message = "amazing ")
 timeRecordR()
 
 
-#test for ml_tune 
+#test for ml_tune
 remove.packages("e1071")
 install.packages("e1071")
 devtools::install_github("edwardcooper/automl",force=TRUE)
@@ -24,7 +24,7 @@ predict(iris_classification,iris)
 devtools::install_github("edwardcooper/automl")
 library(automl)
 ?ml_list
-params_grid=expand.grid(sampling=c("up","down","rose","ADAS")
+params_grid=expand.grid(sampling=c("up","down","rose","smote","ADAS")
                         ,metric=c("ROC","Accuracy","Kappa","Sens","Spec")
                         ,preProcess=list(c("zv","nzv","center","scale"),c("center","scale"))
                         ,method=c("glmnet","glm","bayesglm")
@@ -82,7 +82,7 @@ iris_list=iris_list%>%ml_cv_filter(metric = "Kappa",min = 0.85,FUN = median) %>%
             ml_cv_filter(metric = "Accuracy",min=0.85,FUN=min) %>% ml_bwplot()
 
 
-# test for ml_cor_filter 
+# test for ml_cor_filter
 
 devtools::install_github("edwardcooper/automl")
 library(automl)

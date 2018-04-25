@@ -50,7 +50,7 @@
 ml_list=function(data,target,params,summaryFunction=twoClassSummary,save_model=NULL){
   automl::timeRecordB()
   # record the current packages loaded in R
-  before_func_packs=base::search()
+  init_state=base::search()
   require(magrittr)
   # print the total numbers of models to be trained.
   print(paste("Total training model(s):",sum(params[,"tuneLength"]),sep=" " ))
@@ -97,7 +97,7 @@ ml_list=function(data,target,params,summaryFunction=twoClassSummary,save_model=N
     # model training part.
     # add tryCatch for error handling.
 
-    ml_model_train=automl::ml_tune(data=data,target=target,sampling=sampling,preProcess=preProcess
+    ml_model_train=ml_tune(data=data,target=target,sampling=sampling,preProcess=preProcess
                            ,metric=metric
                            ,tuneLength=tuneLength
                            ,search=search
@@ -137,7 +137,7 @@ ml_list=function(data,target,params,summaryFunction=twoClassSummary,save_model=N
   if(!is.null(save_model)){ saveRDS(model_list,file=paste(save_model,".rds",sep="") ) }
 
   # remove all added packages.
-  automl::unload_additional_packs(before_func_packs=before_func_packs)
+  unload_extra_library(init_state = init_state)
 
   return(model_list)
 }
