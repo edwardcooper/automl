@@ -35,7 +35,7 @@ The main function is ml_list. Below is an example of how to use it.
 params_grid = expand.grid(sampling = c("up","down","rose","smote","ADAS")
                         ,metric = c("ROC","Accuracy","Kappa","Sens","Spec")
                         ,preProcess = list(c("zv","nzv","center","scale"),c("center","scale"))
-                        ,method = c("glmnet","glm","bayesglm")
+                        ,method = c("rf","xgbTree","LogitBoost")
                         ,search = "random"
                         ,tuneLength = 10
                         ,k = 10,nthread = 3)
