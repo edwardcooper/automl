@@ -125,8 +125,9 @@ iris_list = model_list_load(path="./iris_models") %>% assign_model_names %>% ml_
 ```
 
 
+# More details are in the file [README_with_results.md](README_with_results.md).
 
-This is part of sessionInfo. More to come when I wrote the README with Rmarkdown. 
+This is part of sessionInfo. 
 
 R version 3.4.4 (2018-03-15)
 Platform: x86_64-pc-linux-gnu (64-bit)
