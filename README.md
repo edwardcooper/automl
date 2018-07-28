@@ -11,6 +11,10 @@ To use it, please manually install e1071 package first,
 ```r
 install.packages("e1071")
 ```
+Also install the devtools package to install automl from github
+```r
+install.packages("devtools")
+```
 Then, install the latest version of the automl packages in Github: 
 ```r
 devtools::install_github("edwardcooper/automl")
@@ -54,9 +58,9 @@ side notes:
 
 1. The sampling methods in this package contain more than up, down, rose, smote as supported by the caret. The current version also supports ADAS, ANS, BLSMOTE, DBSMOTE, RSLS, SLS. For details on these sampling methods, please see the https://CRAN.R-project.org/package=smotefamily on CRAN.
 
-2. The dataset iris is a multi-class classification problem, thus ROC, Sens, and Spec are not really supported metrics. It is used to showcase all the possible metrics and how the packages do the error handling. 
+2. The dataset iris is a multi-class classification problem, thus the default ROC, Sens, and Spec in caret are not supported metrics. It is used to showcase all the possible metrics and how the packages do the error handling. 
 
-3. For more detailed information on ml_list and ml_tune. Use `r ?ml_list` and `?ml_tune` in the R console. 
+3. For more detailed information on ml_list and ml_tune. Use `?ml_list` and `?ml_tune` in the R console. 
 
 
 
@@ -65,7 +69,7 @@ side notes:
 
 ### Model Selection
 
-This package also has some tools to help with model selection. We separate the model selection functions into two parts. The first part is to select models based on cross-validation results. The second part is to select models based on the development set.
+This package also has some tools to help with model selection. We separate the model selection functions into two parts. The first part is to select models based on cross-validation results. The second part is to select models based on the development(validation) dataset.
 
 After training the models for a long time, we will need to load all models into the R console. 
 
@@ -81,7 +85,7 @@ ml_bwplot(iris_list)
 
 ```
 
-Then you would notice that there is no meaningful information about what each model is. We should use the `r assing_model_names` function in the automl packages to give models names based on its names based on method, metric, preProcess and sampling methods.
+Then you would notice that there is no meaningful information about what each model is. We should use the ` assign_model_names` function in the automl packages to give models names based on its names, method, metric, preProcess and sampling methods.
 
 ```r
 iris_list = assign_model_names(iris_list) 
@@ -110,7 +114,7 @@ iris_list = iris_list %>% ml_cv_filter(metric = "Accuracy",min = 0.87,FUN = min)
 
 Last but not the least, we want to select models with a small correlation between models. Let us assume that we want all out models to have correlation no bigger than 0.75.
 
-This could be easily done using the `r ml_cor_filter` function in the automl package.
+This could be easily done using the ` ml_cor_filter` function in the automl package.
 
 ```r
 iris_list = iris_list %>% ml_cor_filter(cor_level=0.75)
