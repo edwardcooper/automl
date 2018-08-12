@@ -5,7 +5,7 @@ It is basically a wrapper on top of the caret package.
 
 ## Installation 
 
-
+Before installing, please update your R version and Rstudio version. 
 
 To use it, please manually install e1071 package first,
 ```r
