@@ -37,12 +37,12 @@ The main function is ml_list. Below is an example of how to use it.
 ```r
 # construct the parameter space
 params_grid = expand.grid(sampling = c("up","down","rose","smote","ADAS")
-                        ,metric = c("ROC","Accuracy","Kappa","Sens","Spec")
+                        ,metric = c("ROC","Accuracy")
                         ,preProcess = list(c("zv","nzv","center","scale"),c("center","scale"))
-                        ,method = c("rf","xgbTree","LogitBoost")
+                        ,method = c("rf","LogitBoost")
                         ,search = "random"
                         ,tuneLength = 10
-                        ,k = 10,nthread = 3)
+                        ,k = 3,nthread = 3)
 # install missing package dependencies.
 install_pkg_model_names(params_grid$method)
  
@@ -58,7 +58,9 @@ side notes:
 
 1. The sampling methods in this package contain more than up, down, rose, smote as supported by the caret. The current version also supports ADAS, ANS, BLSMOTE, DBSMOTE, RSLS, SLS. For details on these sampling methods, please see the https://CRAN.R-project.org/package=smotefamily on CRAN.
 
-2. The dataset iris is a multi-class classification problem, thus the default ROC, Sens, and Spec in caret are not supported metrics. It is used to showcase all the possible metrics and how the packages do the error handling. 
+2. The dataset iris is a multi-class classification problem. 
+
+3. Some errors are intentional to showcase how the packages do the error handling. 
 
 3. For more detailed information on ml_list and ml_tune. Use `?ml_list` and `?ml_tune` in the R console. 
 
