@@ -1,4 +1,7 @@
 # automl
+
+**This package is no longer maintained by anyone.**
+
 An R package to make training hundreds of machine learning models with a few lines of code. 
 
 It is basically a wrapper on top of the caret package.
